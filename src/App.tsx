@@ -6,6 +6,8 @@ import Services from './pages/Services'
 import Team from './pages/Team'
 import Booking from './pages/Booking'
 import Contact from './pages/Contact'
+import Gallery from './pages/Gallery'
+import Appointments from './pages/Appointments'
 import WhatsAppButton from './components/WhatsAppButton'
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
       case 'services': return <Services />
       case 'team':     return <Team />
       case 'booking':  return <Booking />
-      case 'contact':  return <Contact />
+      case 'contact':      return <Contact />
+      case 'gallery':      return <Gallery />
+      case 'appointments': return <Appointments />
     }
   }
 

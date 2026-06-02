@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-export type Page = 'home' | 'services' | 'team' | 'booking' | 'contact'
+export type Page = 'home' | 'services' | 'team' | 'booking' | 'contact' | 'gallery' | 'appointments'
 
 interface AppContextType {
   currentPage: Page

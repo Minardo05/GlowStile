@@ -4,8 +4,9 @@ import { useApp, type Page } from '../AppContext'
 const navLinks: { label: string; page: Page }[] = [
   { label: 'Inicio', page: 'home' },
   { label: 'Servicios', page: 'services' },
+  { label: 'Galería', page: 'gallery' },
   { label: 'Equipo', page: 'team' },
-  { label: 'Reservar', page: 'booking' },
+  { label: 'Mis Citas', page: 'appointments' },
   { label: 'Contacto', page: 'contact' },
 ]
 
