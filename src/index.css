@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-accent text-secondary font-sans;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-200;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300;
+  }
+  .section-title {
+    @apply text-3xl font-bold text-secondary mb-2;
+  }
+  .section-subtitle {
+    @apply text-primary font-medium uppercase tracking-widest text-sm mb-4;
+  }
+}
