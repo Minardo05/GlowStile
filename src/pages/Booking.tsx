@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import { services } from '../data/services'
 import { team } from '../data/team'
+import { saveAppointment } from '../utils/appointments'
+
+const localDateString = () => {
+  const d = new Date()
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
 
 type FormState = {
   name: string
@@ -29,6 +35,17 @@ export default function Booking() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    saveAppointment({
+      clientName: form.name,
+      phone: form.phone,
+      email: form.email,
+      fechaNacimiento: form.fechaNacimiento,
+      service: form.service,
+      specialist: form.specialist,
+      date: form.date,
+      time: form.time,
+      notes: form.notes,
+    })
     setSubmitted(true)
   }
 
@@ -146,7 +163,7 @@ export default function Booking() {
                 <label className="block text-sm font-medium text-gray-600 mb-1">Fecha *</label>
                 <input
                   type="date" name="date" required value={form.date} onChange={handleChange}
-                  min={new Date().toISOString().split('T')[0]}
+                  min={localDateString()}
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
                 />
               </div>
