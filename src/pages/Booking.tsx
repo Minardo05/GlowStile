@@ -92,6 +92,15 @@ export default function Booking() {
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
               />
             </div>
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                🎂 Fecha de Nacimiento *
+              </label>
+              <input
+                type="date" name="fechaNacimiento" required value={form.fechaNacimiento} onChange={handleChange}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition"
+              />
+            </div>
           </div>
 
           {/* Service selection */}
