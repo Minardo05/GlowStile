@@ -6,6 +6,7 @@ import Services from './pages/Services'
 import Team from './pages/Team'
 import Booking from './pages/Booking'
 import Contact from './pages/Contact'
+import WhatsAppButton from './components/WhatsAppButton'
 
 function App() {
   const [currentPage, setPage] = useState<Page>('home')
@@ -31,6 +32,7 @@ function App() {
           <p>© {new Date().getFullYear()} GlowStile · Todos los derechos reservados</p>
         </footer>
       </div>
+      <WhatsAppButton />
     </AppContext.Provider>
   )
 }

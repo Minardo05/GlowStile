@@ -6,6 +6,7 @@ type FormState = {
   name: string
   phone: string
   email: string
+  fechaNacimiento: string
   service: string
   specialist: string
   date: string
@@ -18,7 +19,7 @@ const timeSlots = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
 
 export default function Booking() {
   const [form, setForm] = useState<FormState>({
-    name: '', phone: '', email: '', service: '', specialist: '', date: '', time: '', notes: '',
+    name: '', phone: '', email: '', fechaNacimiento: '', service: '', specialist: '', date: '', time: '', notes: '',
   })
   const [submitted, setSubmitted] = useState(false)
 
@@ -37,12 +38,13 @@ export default function Booking() {
         <div className="bg-white rounded-2xl p-12 shadow-lg text-center max-w-md">
           <div className="text-6xl mb-4">🎉</div>
           <h2 className="text-3xl font-bold text-secondary mb-3">¡Cita solicitada!</h2>
-          <p className="text-gray-500 mb-6">
+          <p className="text-gray-500 mb-4">
             Gracias <strong>{form.name}</strong>. Nos pondremos en contacto contigo a través de
             <strong> {form.email || form.phone}</strong> para confirmar tu cita.
           </p>
+          <p className="text-gray-500 mb-6">¡Te enviaremos un saludo especial en tu cumpleaños! 🎂</p>
           <button
-            onClick={() => { setSubmitted(false); setForm({ name:'', phone:'', email:'', service:'', specialist:'', date:'', time:'', notes:'' }) }}
+            onClick={() => { setSubmitted(false); setForm({ name:'', phone:'', email:'', fechaNacimiento:'', service:'', specialist:'', date:'', time:'', notes:'' }) }}
             className="btn-primary"
           >
             Nueva reserva
