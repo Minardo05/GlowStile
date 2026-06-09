@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha de Contenidos — Web Corporativa</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent:  #e8a020;
+      --light:   #f5f8fb;
+      --border:  #d0dae5;
+      --text:    #2d3748;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--text);
+      background: #eef2f7;
+      padding: 30px 16px 60px;
+    }
+    .wrapper { max-width: 860px; margin: 0 auto; }
+
+    /* ── COVER ── */
+    .cover {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 12px 12px 0 0;
+      padding: 40px 48px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+    }
+    .cover h1 { font-size: 26px; font-weight: 700; line-height: 1.3; }
+    .cover p  { font-size: 13px; opacity: .7; margin-top: 6px; }
+    .cover-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── BODY CARD ── */
+    .card {
+      background: #fff;
+      padding: 36px 48px;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+    .card:last-of-type { border-radius: 0 0 12px 12px; border-bottom: 1px solid var(--border); }
+
+    /* ── SECTION HEADER ── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      margin: 32px 0 20px;
+    }
+    .section-title:first-child { margin-top: 0; }
+    .section-icon { font-size: 20px; }
+
+    /* ── INSTRUCTIONS BOX ── */
+    .info-box {
+      background: #fffbf0;
+      border: 1px solid #f5d87a;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 13px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      color: #6b5a00;
+    }
+    .info-box strong { color: var(--primary); }
+
+    /* ── FORM ELEMENTS ── */
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #5a6a7e;
+      margin-bottom: 5px;
+    }
+    .field label span.req { color: #e05252; margin-left: 3px; }
+    input[type="text"], input[type="email"], input[type="tel"],
+    input[type="url"], textarea, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--light);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(26,58,92,.1);
+      background: #fff;
+    }
+    textarea { resize: vertical; min-height: 90px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+    /* ── CHECKBOX GROUP ── */
+    .check-group { display: flex; flex-wrap: wrap; gap: 10px; }
+    .check-group label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--text);
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+    }
+    .check-group label:hover { background: #dce8f7; border-color: var(--primary); }
+    .check-group input[type="checkbox"] { accent-color: var(--primary); width: 15px; height: 15px; }
+
+    /* ── FILE HINT ── */
+    .file-hint {
+      font-size: 12px;
+      color: #8a9ab0;
+      margin-top: 5px;
+    }
+
+    /* ── SEPARATOR ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+    /* ── SUBMIT BUTTON ── */
+    .btn-submit {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 32px;
+      letter-spacing: .03em;
+      transition: background .2s;
+    }
+    .btn-submit:hover { background: #122c47; }
+
+    /* ── FOOTER NOTE ── */
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #8a9ab0;
+      margin-top: 24px;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap { background: rgba(255,255,255,.2); border-radius: 4px; height: 6px; margin-top: 18px; }
+    .progress-bar  { background: var(--accent); height: 6px; border-radius: 4px; width: 0%; transition: width .4s; }
+
+    @media (max-width: 600px) {
+      .cover { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+      .card { padding: 24px 20px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .wrapper { max-width: 100%; }
+      .btn-submit, .progress-wrap { display: none; }
+      .cover { border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div>
+      <h1>Ficha de Contenidos<br>para tu Web Corporativa</h1>
+      <p>Completa este formulario para que podamos diseñar tu presencia digital.</p>
+      <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+    <div class="cover-badge">Documento cliente</div>
+  </div>
+
+  <!-- CUERPO -->
+  <form class="card" id="clienteForm" onsubmit="handleSubmit(event)">
+
+    <div class="info-box">
+      📋 <strong>Instrucciones:</strong> Rellena todos los campos marcados con <span style="color:#e05252">*</span>.
+      Los campos opcionales ayudan a crear una web más completa, pero puedes dejarlos en blanco por ahora.
+      Al finalizar pulsa <strong>"Guardar y enviar"</strong> — se generará un resumen en PDF.
+    </div>
+
+    <!-- 1. DATOS DE LA EMPRESA -->
+    <div class="section-title"><span class="section-icon">🏢</span> 1. Datos de la Empresa</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Nombre comercial <span class="req">*</span></label>
+        <input type="text" name="nombre_empresa" placeholder="Ej. GlowStile Estética" required />
+      </div>
+      <div class="field">
+        <label>Razón social (si aplica)</label>
+        <input type="text" name="razon_social" placeholder="Ej. GlowStile S.L." />
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Sector / Actividad <span class="req">*</span></label>
+        <input type="text" name="sector" placeholder="Ej. Peluquería y Estética" required />
+      </div>
+      <div class="field">
+        <label>Año de fundación</label>
+        <input type="text" name="anio_fundacion" placeholder="Ej. 2015" />
+      </div>
+    </div>
+    <div class="field">
+      <label>Descripción breve de la empresa <span class="req">*</span></label>
+      <textarea name="descripcion" placeholder="Describe en 2-4 frases a qué se dedica tu empresa, qué la hace especial y a quién va dirigida." required></textarea>
+    </div>
+    <div class="field">
+      <label>Slogan o frase de marca</label>
+      <input type="text" name="slogan" placeholder="Ej. «Donde tu imagen cobra vida»" />
+    </div>
+
+    <!-- 2. DATOS DE CONTACTO -->
+    <div class="section-title"><span class="section-icon">📞</span> 2. Datos de Contacto</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Teléfono principal <span class="req">*</span></label>
+        <input type="tel" name="telefono_1" placeholder="+34 600 000 000" required />
+      </div>
+      <div class="field">
+        <label>Teléfono secundario / WhatsApp</label>
+        <input type="tel" name="telefono_2" placeholder="+34 600 000 001" />
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Email de contacto público <span class="req">*</span></label>
+        <input type="email" name="email_publico" placeholder="info@tuempresa.com" required />
+      </div>
+      <div class="field">
+        <label>Email para recibir formularios web</label>
+        <input type="email" name="email_formularios" placeholder="reservas@tuempresa.com" />
+      </div>
+    </div>
+    <div class="field">
+      <label>Dirección física <span class="req">*</span></label>
+      <input type="text" name="direccion" placeholder="Calle Ejemplo 12, 1º A, 28001 Madrid" required />
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Horario de atención</label>
+        <input type="text" name="horario" placeholder="Lun-Vie 9:00-20:00 · Sáb 10:00-14:00" />
+      </div>
+      <div class="field">
+        <label>Enlace Google Maps / ubicación</label>
+        <input type="url" name="maps_link" placeholder="https://maps.google.com/..." />
+      </div>
+    </div>
+
+    <!-- 3. IDENTIDAD VISUAL -->
+    <div class="section-title"><span class="section-icon">🎨</span> 3. Identidad Visual & Logotipo</div>
+    <div class="field">
+      <label>¿Tienes logotipo? <span class="req">*</span></label>
+      <select name="tiene_logo" required>
+        <option value="">Selecciona una opción</option>
+        <option value="si_buena_calidad">Sí, tengo el logo en alta calidad (PNG/SVG)</option>
+        <option value="si_baja_calidad">Sí, pero solo tengo el logo en baja calidad</option>
+        <option value="no_necesito">No tengo logo y necesito que lo diseñen</option>
+        <option value="no_no_necesito">No tengo logo y de momento no lo necesito</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Colores corporativos (códigos HEX o descripción)</label>
+      <input type="text" name="colores" placeholder="Ej. Dorado #C8A96E, Negro #1a1a2e, Crema #f5e6d3" />
+    </div>
+    <div class="field">
+      <label>Tipografías que usas habitualmente</label>
+      <input type="text" name="tipografias" placeholder="Ej. Montserrat, Playfair Display o sans-serif moderna" />
+    </div>
+    <div class="field">
+      <label>Estilo visual deseado para la web</label>
+      <div class="check-group">
+        <label><input type="checkbox" name="estilo" value="minimalista" /> Minimalista</label>
+        <label><input type="checkbox" name="estilo" value="elegante" /> Elegante / Lujo</label>
+        <label><input type="checkbox" name="estilo" value="moderno" /> Moderno / Tecnológico</label>
+        <label><input type="checkbox" name="estilo" value="calido" /> Cálido / Cercano</label>
+        <label><input type="checkbox" name="estilo" value="juvenil" /> Juvenil / Dinámico</label>
+        <label><input type="checkbox" name="estilo" value="profesional" /> Profesional / Corporativo</label>
+        <label><input type="checkbox" name="estilo" value="rustico" /> Rústico / Natural</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>URLs de webs que te gustan como referencia</label>
+      <textarea name="referencias_web" placeholder="Pega aquí las URLs de 2-3 webs que te inspiran y explica qué te gusta de cada una." style="min-height:70px"></textarea>
+    </div>
+
+    <!-- 4. FOTOGRAFÍAS E IMÁGENES -->
+    <div class="section-title"><span class="section-icon">📷</span> 4. Fotografías e Imágenes</div>
+    <div class="field">
+      <label>¿Dispones de fotos propias del negocio? <span class="req">*</span></label>
+      <select name="tiene_fotos" required>
+        <option value="">Selecciona una opción</option>
+        <option value="si_muchas">Sí, tengo muchas fotos en buena calidad</option>
+        <option value="si_pocas">Sí, pero tengo pocas (menos de 10)</option>
+        <option value="no_contratar">No tengo y quiero contratar sesión fotográfica</option>
+        <option value="no_banco">No tengo, usaremos banco de imágenes</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>¿Qué imágenes necesitas en la web?</label>
+      <div class="check-group">
+        <label><input type="checkbox" name="tipo_fotos" value="fachada" /> Fachada / local</label>
+        <label><input type="checkbox" name="tipo_fotos" value="equipo" /> Equipo / personal</label>
+        <label><input type="checkbox" name="tipo_fotos" value="servicios" /> Servicios en acción</label>
+        <label><input type="checkbox" name="tipo_fotos" value="antes_despues" /> Antes / Después</label>
+        <label><input type="checkbox" name="tipo_fotos" value="productos" /> Productos</label>
+        <label><input type="checkbox" name="tipo_fotos" value="instalaciones" /> Instalaciones</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Enlace a carpeta con fotos (Google Drive, Dropbox, etc.)</label>
+      <input type="url" name="link_fotos" placeholder="https://drive.google.com/..." />
+      <p class="file-hint">💡 Sube las fotos a una carpeta compartida y pega el enlace aquí.</p>
+    </div>
+
+    <!-- 5. MENÚ Y SECCIONES DE LA WEB -->
+    <div class="section-title"><span class="section-icon">🗂️</span> 5. Menú y Secciones de la Web</div>
+    <div class="field">
+      <label>¿Qué secciones quieres en tu web? <span class="req">*</span></label>
+      <div class="check-group">
+        <label><input type="checkbox" name="secciones" value="inicio" checked /> 🏠 Inicio (Home)</label>
+        <label><input type="checkbox" name="secciones" value="sobre_nosotros" /> 👥 Sobre nosotros / Quiénes somos</label>
+        <label><input type="checkbox" name="secciones" value="servicios" checked /> ✂️ Servicios / Tratamientos</label>
+        <label><input type="checkbox" name="secciones" value="equipo" /> 🧑‍💼 Equipo / Profesionales</label>
+        <label><input type="checkbox" name="secciones" value="galeria" /> 🖼️ Galería / Portfolio</label>
+        <label><input type="checkbox" name="secciones" value="reservas" /> 📅 Reservas / Citas online</label>
+        <label><input type="checkbox" name="secciones" value="precios" /> 💰 Tarifas / Precios</label>
+        <label><input type="checkbox" name="secciones" value="opiniones" /> ⭐ Opiniones / Testimonios</label>
+        <label><input type="checkbox" name="secciones" value="blog" /> 📝 Blog / Noticias</label>
+        <label><input type="checkbox" name="secciones" value="faq" /> ❓ Preguntas frecuentes</label>
+        <label><input type="checkbox" name="secciones" value="contacto" checked /> 📬 Contacto</label>
+        <label><input type="checkbox" name="secciones" value="tienda" /> 🛒 Tienda online</label>
+        <label><input type="checkbox" name="secciones" value="mapa" /> 📍 Mapa / Cómo llegar</label>
+        <label><input type="checkbox" name="secciones" value="politicas" /> 📄 Políticas / Aviso legal</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Otras secciones que necesitas (escribe aquí)</label>
+      <input type="text" name="otras_secciones" placeholder="Ej. Zona privada para clientes, Área de descargas, Calculadora de presupuesto..." />
+    </div>
+
+    <!-- 6. SERVICIOS Y PRECIOS -->
+    <div class="section-title"><span class="section-icon">✂️</span> 6. Servicios y Tarifas</div>
+    <div class="field">
+      <label>Lista tus servicios principales <span class="req">*</span></label>
+      <textarea name="lista_servicios" placeholder="Escribe cada servicio en una línea. Si tienes precio y duración, inclúyelos.&#10;Ej:&#10;Corte de cabello — 25€ — 45 min&#10;Coloración completa — 60€ — 2h&#10;Keratina brasileña — 90€ — 3h" required></textarea>
+    </div>
+    <div class="field">
+      <label>¿Quieres mostrar precios en la web?</label>
+      <select name="mostrar_precios">
+        <option value="si">Sí, mostrar todos los precios</option>
+        <option value="aproximados">Sí, precios aproximados / desde X€</option>
+        <option value="no">No, prefiero que el cliente contacte para precio</option>
+      </select>
+    </div>
+
+    <!-- 7. REDES SOCIALES -->
+    <div class="section-title"><span class="section-icon">📱</span> 7. Redes Sociales & Links</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Instagram</label>
+        <input type="url" name="instagram" placeholder="https://instagram.com/tuusuario" />
+      </div>
+      <div class="field">
+        <label>Facebook</label>
+        <input type="url" name="facebook" placeholder="https://facebook.com/tupagina" />
+      </div>
+      <div class="field">
+        <label>TikTok</label>
+        <input type="url" name="tiktok" placeholder="https://tiktok.com/@tuusuario" />
+      </div>
+      <div class="field">
+        <label>YouTube</label>
+        <input type="url" name="youtube" placeholder="https://youtube.com/@tucanal" />
+      </div>
+      <div class="field">
+        <label>LinkedIn</label>
+        <input type="url" name="linkedin" placeholder="https://linkedin.com/company/tuempresa" />
+      </div>
+      <div class="field">
+        <label>Google Business / Tripadvisor</label>
+        <input type="url" name="google_business" placeholder="https://g.co/kgs/..." />
+      </div>
+    </div>
+
+    <!-- 8. DOMINIO Y ALOJAMIENTO -->
+    <div class="section-title"><span class="section-icon">🌐</span> 8. Dominio y Alojamiento</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Dominio deseado <span class="req">*</span></label>
+        <input type="text" name="dominio" placeholder="Ej. glowstile.com o glowstile.es" required />
+      </div>
+      <div class="field">
+        <label>¿Ya tienes el dominio registrado?</label>
+        <select name="dominio_registrado">
+          <option value="no">No, necesito que lo gestionen</option>
+          <option value="si">Sí, ya lo tengo registrado</option>
+          <option value="no_se">No sé / necesito orientación</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>¿Tienes web anterior que quieras reemplazar?</label>
+      <input type="url" name="web_anterior" placeholder="https://webactual.com" />
+    </div>
+
+    <!-- 9. OBJETIVOS Y PÚBLICO -->
+    <div class="section-title"><span class="section-icon">🎯</span> 9. Objetivos y Público Objetivo</div>
+    <div class="field">
+      <label>¿Para qué quieres la web? (objetivos principales) <span class="req">*</span></label>
+      <div class="check-group">
+        <label><input type="checkbox" name="objetivos" value="visibilidad" /> Aumentar visibilidad online</label>
+        <label><input type="checkbox" name="objetivos" value="captacion" /> Captar nuevos clientes</label>
+        <label><input type="checkbox" name="objetivos" value="reservas" /> Recibir reservas / citas</label>
+        <label><input type="checkbox" name="objetivos" value="credibilidad" /> Dar credibilidad a la marca</label>
+        <label><input type="checkbox" name="objetivos" value="ventas" /> Vender productos online</label>
+        <label><input type="checkbox" name="objetivos" value="info" /> Informar sobre servicios</label>
+        <label><input type="checkbox" name="objetivos" value="seo" /> Aparecer en Google</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Describe a tu cliente ideal</label>
+      <textarea name="cliente_ideal" placeholder="Ej. Mujeres de 25-50 años residentes en Madrid, interesadas en tratamientos de belleza y bienestar, nivel adquisitivo medio-alto." style="min-height:70px"></textarea>
+    </div>
+    <div class="field">
+      <label>¿Tienes competidores directos cuya web debamos revisar?</label>
+      <textarea name="competidores" placeholder="Pega URLs de competidores si quieres que las analicemos." style="min-height:60px"></textarea>
+    </div>
+
+    <!-- 10. TEXTOS -->
+    <div class="section-title"><span class="section-icon">✍️</span> 10. Textos y Contenido</div>
+    <div class="field">
+      <label>¿Quién redactará los textos de la web? <span class="req">*</span></label>
+      <select name="textos_quien" required>
+        <option value="">Selecciona una opción</option>
+        <option value="cliente">Los redacto yo (el cliente)</option>
+        <option value="agencia">Los redacta la agencia / diseñador</option>
+        <option value="mixto">Los elaboramos juntos</option>
+        <option value="ia">Usar IA con revisión final del cliente</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Idiomas de la web</label>
+      <div class="check-group">
+        <label><input type="checkbox" name="idiomas" value="es" checked /> Español</label>
+        <label><input type="checkbox" name="idiomas" value="en" /> Inglés</label>
+        <label><input type="checkbox" name="idiomas" value="ca" /> Catalán</label>
+        <label><input type="checkbox" name="idiomas" value="eu" /> Euskera</label>
+        <label><input type="checkbox" name="idiomas" value="pt" /> Portugués</label>
+        <label><input type="checkbox" name="idiomas" value="fr" /> Francés</label>
+      </div>
+    </div>
+
+    <!-- 11. FUNCIONALIDADES ESPECIALES -->
+    <div class="section-title"><span class="section-icon">⚙️</span> 11. Funcionalidades Especiales</div>
+    <div class="field">
+      <label>¿Qué funcionalidades necesitas?</label>
+      <div class="check-group">
+        <label><input type="checkbox" name="funcionalidades" value="reservas_online" /> 📅 Reservas / citas online</label>
+        <label><input type="checkbox" name="funcionalidades" value="whatsapp" /> 💬 Botón WhatsApp</label>
+        <label><input type="checkbox" name="funcionalidades" value="chat" /> 🤖 Chat en vivo / chatbot</label>
+        <label><input type="checkbox" name="funcionalidades" value="newsletter" /> 📧 Newsletter / suscripción email</label>
+        <label><input type="checkbox" name="funcionalidades" value="pasarela_pago" /> 💳 Pasarela de pago</label>
+        <label><input type="checkbox" name="funcionalidades" value="area_privada" /> 🔒 Área privada clientes</label>
+        <label><input type="checkbox" name="funcionalidades" value="multilenguaje" /> 🌍 Multilenguaje</label>
+        <label><input type="checkbox" name="funcionalidades" value="google_analytics" /> 📊 Google Analytics</label>
+        <label><input type="checkbox" name="funcionalidades" value="mapa_interactivo" /> 📍 Mapa interactivo</label>
+        <label><input type="checkbox" name="funcionalidades" value="videos" /> 🎥 Vídeos incrustados</label>
+        <label><input type="checkbox" name="funcionalidades" value="feed_instagram" /> 📸 Feed de Instagram</label>
+        <label><input type="checkbox" name="funcionalidades" value="valoraciones" /> ⭐ Sistema de valoraciones</label>
+        <label><input type="checkbox" name="funcionalidades" value="comparador" /> ⚖️ Comparador de servicios</label>
+      </div>
+    </div>
+
+    <!-- 12. PLAZOS Y PRESUPUESTO -->
+    <div class="section-title"><span class="section-icon">📅</span> 12. Plazos y Notas Finales</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Fecha límite deseada de entrega</label>
+        <input type="text" name="fecha_entrega" placeholder="Ej. Antes del 1 de septiembre 2026" />
+      </div>
+      <div class="field">
+        <label>Presupuesto aproximado</label>
+        <select name="presupuesto">
+          <option value="">Sin preferencia / a consultar</option>
+          <option value="menos_500">Menos de 500 €</option>
+          <option value="500_1500">500 € – 1.500 €</option>
+          <option value="1500_3000">1.500 € – 3.000 €</option>
+          <option value="3000_6000">3.000 € – 6.000 €</option>
+          <option value="mas_6000">Más de 6.000 €</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Comentarios adicionales o peticiones especiales</label>
+      <textarea name="comentarios" placeholder="Cualquier detalle importante que quieras que sepamos antes de comenzar..."></textarea>
+    </div>
+
+    <hr />
+
+    <button type="submit" class="btn-submit">💾 Guardar y generar resumen</button>
+
+    <p class="footer-note">
+      Al enviar este formulario, sus datos serán usados exclusivamente para el desarrollo de su proyecto web.<br>
+      Documento generado para uso profesional · Diseño web corporativo
+    </p>
+  </form>
+
+</div>
+
+<!-- RESULTADO MODAL -->
+<div id="resultModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:1000; overflow-y:auto; padding:30px 16px;">
+  <div style="background:#fff; max-width:720px; margin:0 auto; border-radius:12px; padding:40px 48px; position:relative;">
+    <button onclick="document.getElementById('resultModal').style.display='none'"
+      style="position:absolute; top:16px; right:20px; background:none; border:none; font-size:22px; cursor:pointer; color:#666;">✕</button>
+    <div style="text-align:center; margin-bottom:24px;">
+      <div style="font-size:48px;">✅</div>
+      <h2 style="font-size:22px; color:#1a3a5c; margin-top:8px;">Ficha completada</h2>
+      <p style="color:#5a6a7e; font-size:14px; margin-top:6px;">Aquí tienes el resumen de los datos facilitados</p>
+    </div>
+    <div id="resultContent" style="font-size:13px; line-height:1.8; color:#2d3748;"></div>
+    <div style="display:flex; gap:12px; margin-top:28px; flex-wrap:wrap;">
+      <button onclick="window.print()"
+        style="flex:1; background:#1a3a5c; color:#fff; border:none; padding:12px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">
+        🖨️ Imprimir / Guardar PDF
+      </button>
+      <button onclick="copyToClipboard()"
+        style="flex:1; background:#f5f8fb; color:#1a3a5c; border:1px solid #d0dae5; padding:12px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">
+        📋 Copiar al portapapeles
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Progress bar
+  const form = document.getElementById('clienteForm');
+  const bar  = document.getElementById('progressBar');
+  const required = form.querySelectorAll('[required]');
+  function updateProgress() {
+    const filled = [...required].filter(el => el.value.trim() !== '').length;
+    bar.style.width = (filled / required.length * 100) + '%';
+  }
+  form.addEventListener('input', updateProgress);
+  updateProgress();
+
+  // Submit → build summary
+  function handleSubmit(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const labels = {
+      nombre_empresa:'Nombre comercial', razon_social:'Razón social', sector:'Sector',
+      anio_fundacion:'Año fundación', descripcion:'Descripción', slogan:'Slogan',
+      telefono_1:'Teléfono principal', telefono_2:'Teléfono / WhatsApp',
+      email_publico:'Email público', email_formularios:'Email formularios',
+      direccion:'Dirección', horario:'Horario', maps_link:'Google Maps',
+      tiene_logo:'Logotipo', colores:'Colores corporativos', tipografias:'Tipografías',
+      referencias_web:'Webs de referencia', tiene_fotos:'Fotografías disponibles',
+      link_fotos:'Enlace fotos', lista_servicios:'Lista de servicios',
+      mostrar_precios:'Mostrar precios', dominio:'Dominio deseado',
+      dominio_registrado:'Dominio registrado', web_anterior:'Web anterior',
+      cliente_ideal:'Cliente ideal', competidores:'Competidores',
+      textos_quien:'Redacción de textos', fecha_entrega:'Fecha límite',
+      presupuesto:'Presupuesto', comentarios:'Comentarios', instagram:'Instagram',
+      facebook:'Facebook', tiktok:'TikTok', youtube:'YouTube',
+      linkedin:'LinkedIn', google_business:'Google Business',
+    };
+    const multiLabels = {
+      estilo:'Estilo visual', secciones:'Secciones de la web',
+      tipo_fotos:'Tipos de fotos', objetivos:'Objetivos',
+      funcionalidades:'Funcionalidades', idiomas:'Idiomas',
+    };
+
+    let html = '';
+    let lastSection = '';
+    const sections = [
+      ['nombre_empresa','razon_social','sector','anio_fundacion','descripcion','slogan','🏢 Datos de la Empresa'],
+      ['telefono_1','telefono_2','email_publico','email_formularios','direccion','horario','maps_link','📞 Contacto'],
+      ['tiene_logo','colores','tipografias','estilo','referencias_web','🎨 Identidad Visual'],
+      ['tiene_fotos','tipo_fotos','link_fotos','📷 Fotografías'],
+      ['secciones','otras_secciones','🗂️ Secciones'],
+      ['lista_servicios','mostrar_precios','✂️ Servicios'],
+      ['instagram','facebook','tiktok','youtube','linkedin','google_business','📱 Redes Sociales'],
+      ['dominio','dominio_registrado','web_anterior','🌐 Dominio'],
+      ['objetivos','cliente_ideal','competidores','🎯 Objetivos'],
+      ['textos_quien','idiomas','✍️ Textos'],
+      ['funcionalidades','⚙️ Funcionalidades'],
+      ['fecha_entrega','presupuesto','comentarios','📅 Plazos'],
+    ];
+
+    sections.forEach(group => {
+      const title = group[group.length - 1];
+      const fields = group.slice(0, -1);
+      let rows = '';
+      fields.forEach(key => {
+        let val = '';
+        if (multiLabels[key]) {
+          const checked = [...form.querySelectorAll(`[name="${key}"]:checked`)].map(el => el.value);
+          val = checked.length ? checked.join(', ') : '';
+        } else {
+          val = data.get(key) || '';
+        }
+        if (val && labels[key]) {
+          rows += `<tr><td style="padding:5px 12px 5px 0; color:#5a6a7e; font-size:12px; font-weight:600; white-space:nowrap; vertical-align:top; text-transform:uppercase; letter-spacing:.04em">${labels[key] || multiLabels[key]}</td><td style="padding:5px 0; font-size:13px;">${val}</td></tr>`;
+        } else if (val && multiLabels[key]) {
+          rows += `<tr><td style="padding:5px 12px 5px 0; color:#5a6a7e; font-size:12px; font-weight:600; white-space:nowrap; vertical-align:top; text-transform:uppercase; letter-spacing:.04em">${multiLabels[key]}</td><td style="padding:5px 0; font-size:13px;">${val}</td></tr>`;
+        }
+      });
+      if (rows) {
+        html += `<div style="margin-bottom:20px">
+          <div style="font-weight:700; color:#1a3a5c; font-size:13px; border-bottom:1px solid #e8a020; padding-bottom:4px; margin-bottom:8px">${title}</div>
+          <table style="width:100%; border-collapse:collapse">${rows}</table>
+        </div>`;
+      }
+    });
+
+    document.getElementById('resultContent').innerHTML = html;
+    document.getElementById('resultModal').style.display = 'block';
+    window.scrollTo(0,0);
+  }
+
+  function copyToClipboard() {
+    const text = document.getElementById('resultContent').innerText;
+    navigator.clipboard.writeText(text).then(() => alert('✅ Copiado al portapapeles'));
+  }
+</script>
+</body>
+</html>
